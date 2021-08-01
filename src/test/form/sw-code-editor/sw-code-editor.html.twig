@@ -1,0 +1,19 @@
+{% block sw_code_editor %}
+    <div class="sw-code-editor">
+
+        {% block sw_text_editor_label %}
+            <div class="sw-code-editor__label"
+                 v-if="label.length">{{ label }}
+            </div>
+        {% endblock %}
+
+        {% block sw_code_editor_editor %}
+            <div class="sw-code-editor__editor"
+                 :ref="`editor${editorId}`"
+                 :content="value"
+                 tabindex="1">
+            </div>
+        {% endblock %}
+
+    </div>
+{% endblock %}

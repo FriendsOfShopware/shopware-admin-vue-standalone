@@ -1,0 +1,69 @@
+{% block sw_text_editor %}
+    <div class="sw-text-editor" :class="classes" @click="onClick">
+
+        {% block sw_text_editor_label %}
+            <div class="sw-text-editor__label" v-if="label.length">{{ label }}</div>
+        {% endblock %}
+        {% block sw_text_editor_box %}
+            <div class="sw-text-editor__box">
+                {% block sw_text_editor_box_toolbar %}
+                    <sw-text-editor-toolbar v-if="hasSelection || !isInlineEdit"
+                                            :parentIsActive="isActive"
+                                            :isInlineEdit="isInlineEdit"
+                                            :selection="selection"
+                                            :buttonConfig="buttonConfig"
+                                            :isCodeEdit="isCodeEdit"
+                                            :isTableEdit="isTableEdit"
+                                            @created-el="onToolbarCreated"
+                                            @destroyed-el="onToolbarDestroyed"
+                                            @on-set-link="onSetLink"
+                                            @table-edit="onTableEdit"
+                                            @text-style-change="onTextStyleChange">
+                    </sw-text-editor-toolbar>
+                {% endblock %}
+
+                {% block sw_text_editor_box_table_toolbar %}
+                    <sw-text-editor-table-toolbar
+                        v-if="isTableEdit && !isInlineEdit && !isCodeEdit"
+                        :selection="selection"
+                        @table-delete="onTableDelete"
+                        @table-modify="onTableModify">
+                    </sw-text-editor-table-toolbar>
+                {% endblock %}
+
+                {% block sw_text_editor_box_content %}
+                    <sw-code-editor v-if="isCodeEdit"
+                                    :value="value"
+                                    setFocus
+                                    @blur="emitHtmlContent"
+                                    ref="codeEditor">
+                    </sw-code-editor>
+
+                    <div class="sw-text-editor__content" v-else>
+                        <div class="sw-text-editor__content-editor"
+                             ref="textEditor"
+                             :contenteditable="!disabled"
+                             :style="verticalAlignStyle"
+                             spellcheck="true"
+                             @focus="onFocus"
+                             @paste="onPaste"
+                             @blur="emitContent"
+                             @input="onContentChange"
+                             tabindex="-1"
+                             v-html="$sanitize(content, { ADD_ATTR: ['target'] })">
+                        </div>
+                        <div v-if="placeholderVisible" class="sw-text-editor__content-placeholder" v-html="$sanitize(placeholder)"></div>
+                    </div>
+                {% endblock %}
+
+                {% block sw_text_editor_box_word_count %}
+                    <div v-if="!isInlineEdit && !isCodeEdit" class="sw-text-editor__word_count">
+                        <sw-container columns="1fr" justify="right">
+                            <span class="sw-text-editor__text-length">{{ $tc('global.sw-text-editor.labelTextLength', textLength, { count: textLength }) }}</span>
+                        </sw-container>
+                    </div>
+                {% endblock %}
+            </div>
+        {% endblock %}
+    </div>
+{% endblock %}

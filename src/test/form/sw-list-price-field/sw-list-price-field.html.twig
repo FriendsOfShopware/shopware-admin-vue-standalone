@@ -1,0 +1,66 @@
+{% block sw_list_price_field %}
+    <div :class="{
+            'sw-list-price-field': true,
+            'sw-list-price-field__vertical': vertical
+        }">
+
+        <div class="sw-list-price-field__price">
+            {% block sw_list_price_field_price %}
+                <sw-price-field :price="price"
+                                required
+                                :compact="compact"
+                                :disableSuffix="disableSuffix"
+                                :defaultPrice="defaultPrice"
+                                :taxRate="taxRate"
+                                :error="error"
+                                :disabled="disabled"
+                                :enableInheritance="enableInheritance"
+                                :label="label"
+                                :currency="currency">
+                </sw-price-field>
+            {% endblock %}
+        </div>
+
+        {% block sw_product_price_form_purchase_price_field %}
+            <div v-if="purchasePrices && purchasePrices.length && showSettingPrice"
+                 class="sw-list-price-field__price">
+                {% block sw_product_price_form_purchase_price_field_content %}
+                    <sw-price-field
+                        class="sw-purchase-price-field"
+                        :price="purchasePrices"
+                        :grossLabel="$tc('sw-product.priceForm.labelPurchasePriceGross')"
+                        :netLabel="$tc('sw-product.priceForm.labelPurchasePriceNet')"
+                        :taxRate="taxRate"
+                        :error="error"
+                        :disabled="disabled"
+                        :currency="currency">
+                    </sw-price-field>
+                {% endblock %}
+            </div>
+        {% endblock %}
+
+        <div class="sw-list-price-field__list-price">
+            {% block sw_list_price_field_list_price %}
+                <sw-price-field v-if="!hideListPrices && showSettingPrice"
+                                :price="listPrice"
+                                :defaultPrice="defaultListPrice"
+                                :taxRate="taxRate"
+                                :disabled="disabled"
+                                allowEmpty
+                                :grossLabel="$tc('global.sw-list-price-field.labelListPriceGross')"
+                                :grossHelpText="listPriceHelpText"
+                                :netLabel="$tc('global.sw-list-price-field.labelListPriceNet')"
+                                :compact="compact"
+                                :disableSuffix="disableSuffix"
+                                :label="label"
+                                :enableInheritance="enableInheritance"
+                                :inherited="isInherited"
+                                class="sw-list-price-field__list-price"
+                                @change="listPriceChanged"
+                                :error="error"
+                                :currency="currency">
+                </sw-price-field>
+            {% endblock %}
+        </div>
+    </div>
+{% endblock %}
