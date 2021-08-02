@@ -1,4 +1,5 @@
 import template from './sw-data-grid-inline-edit.html.twig';
+import './sw-data-grid-inline-edit.scss';
 
 const { Component } = Shopware;
 

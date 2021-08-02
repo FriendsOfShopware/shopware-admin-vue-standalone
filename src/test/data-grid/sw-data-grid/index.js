@@ -1,6 +1,8 @@
 import template from './sw-data-grid.html.twig';
+import './sw-data-grid.scss';
 
 const { Component } = Shopware;
+const { Criteria } = Shopware.Data;
 const utils = Shopware.Utils;
 
 /**
@@ -26,6 +28,10 @@ const utils = Shopware.Utils;
  */
 Component.register('sw-data-grid', {
     template,
+
+    inject: [
+        'repositoryFactory'
+    ],
 
     props: {
         dataSource: {
@@ -218,6 +224,23 @@ Component.register('sw-data-grid', {
 
                 return acc;
             }, true);
+        },
+
+        userConfigRepository() {
+            return this.repositoryFactory.create('user_config');
+        },
+
+        currentUser() {
+            return Shopware.State.get('session').currentUser;
+        },
+
+        userGridSettingCriteria() {
+            const criteria = new Criteria();
+            const configurationKey = `grid.setting.${this.identifier}`;
+            criteria.addFilter(Criteria.equals('key', configurationKey));
+            criteria.addFilter(Criteria.equals('userId', this.currentUser && this.currentUser.id));
+
+            return criteria;
         }
     },
 
@@ -289,6 +312,37 @@ Component.register('sw-data-grid', {
         initGridColumns() {
             this.currentColumns = this.getDefaultColumns();
             this.findResizeColumns();
+
+            if (!this.identifier) {
+                return;
+            }
+            this.findUserSetting();
+        },
+
+        findUserSetting() {
+            return this.userConfigRepository.search(this.userGridSettingCriteria, Shopware.Context.api).then((response) => {
+                if (!response.length) {
+                    return;
+                }
+                this.currentSetting = response[0];
+                const gridColumns = response[0].value;
+                this.currentColumns = gridColumns?.columns ?? gridColumns;
+                this.compact = gridColumns?.compact ?? this.compact;
+                this.previews = gridColumns?.previews ?? this.previews;
+            });
+        },
+
+        findUserSettingById() {
+            return this.userConfigRepository.get(this.currentSetting.id, Shopware.Context.api).then((response) => {
+                if (!response) {
+                    return;
+                }
+                this.currentSetting = response;
+                const gridColumns = response.value;
+                this.currentColumns = gridColumns?.columns ?? gridColumns;
+                this.compact = gridColumns?.compact ?? this.compact;
+                this.previews = gridColumns?.previews ?? this.previews;
+            });
         },
 
         findResizeColumns() {
@@ -327,9 +381,20 @@ Component.register('sw-data-grid', {
             });
         },
 
+        createUserGridSetting() {
+            const newUserGrid = this.userConfigRepository.create(Shopware.Context.api);
+            newUserGrid.key = `grid.setting.${this.identifier}`;
+            newUserGrid.userId = this.currentUser && this.currentUser.id;
+            this.currentSetting = newUserGrid;
+        },
+
         saveUserSettings() {
             if (!this.identifier) {
                 return;
+            }
+
+            if (!this.currentSetting.id) {
+                this.createUserGridSetting();
             }
 
             this.currentSetting.value = {
@@ -337,6 +402,9 @@ Component.register('sw-data-grid', {
                 compact: this.compact,
                 previews: this.previews
             };
+            this.userConfigRepository.save(this.currentSetting, Shopware.Context.api).then(() => {
+                this.findUserSettingById();
+            });
         },
 
         getHeaderCellClasses(column, index) {
@@ -439,6 +507,11 @@ Component.register('sw-data-grid', {
                 // #4 loop: part=last()             pointer=transactions
                 // #5 loop: part=name               pointer=last entity in transaction collection
 
+                if (typeof pointer !== 'object' || pointer === null) {
+                    utils.debug.warn(`[sw-data-grid] Can not resolve accessor: ${column.property}`);
+                    return false;
+                }
+
                 // check if the current accessor part is a function call like e.g. entity collection "last()"
                 if (part.includes('()')) {
                     part = part.replace('()', '');
@@ -528,7 +601,7 @@ Component.register('sw-data-grid', {
             }
 
             if (event.target.closest('.sw-context-button') ||
-              event.target.closest('.sw-data-grid__cell-resize')) {
+                event.target.closest('.sw-data-grid__cell-resize')) {
                 return;
             }
 
