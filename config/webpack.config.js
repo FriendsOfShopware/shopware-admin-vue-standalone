@@ -6,9 +6,9 @@ module.exports = {
   entry: path.resolve(__dirname + './../index.js'),
   output: {
     path: path.resolve(__dirname + './../dist'),
-    filename: 'administration.js',
+    filename: 'main.js',
     libraryTarget: 'umd',
-    library: 'administration',
+    library: 'main',
     umdNamedDefine: true
   },
   resolve: {
@@ -16,6 +16,7 @@ module.exports = {
       vue: 'vue/dist/vue.js',
       'src': path.resolve(__dirname, '../src'),
       '~scss/variables': path.resolve(__dirname, '../src/app/assets/scss/variables.scss'),
+      '~scss/mixins': path.resolve(__dirname, '../src/app/assets/scss/mixins.scss'),
     }
   },
   module: {

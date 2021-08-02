@@ -1,0 +1,45 @@
+@import "~scss/variables";
+
+$sw-sidebar-navigation-item-icon-color: $color-darkgray-200;
+$sw-sidebar-navigation-item-icon-color-active: $color-shopware-brand-500;
+$sw-sidebar-navigation-item-hover-color-background: $color-shopware-brand-50;
+$sw-sidebar-navigation-item-active-color-background: $color-shopware-brand-50;
+$sw-sidebar-navigation-item-size: 64px;
+
+.sw-sidebar-navigation-item {
+    position: relative;
+    width: $sw-sidebar-navigation-item-size;
+    height: $sw-sidebar-navigation-item-size;
+    border: none;
+    color: $sw-sidebar-navigation-item-icon-color;
+    background: none;
+    cursor: pointer;
+    outline: none;
+
+    &:hover:not(.is--disabled) {
+        color: $sw-sidebar-navigation-item-icon-color-active;
+    }
+
+    &.is--active {
+        background: $sw-sidebar-navigation-item-active-color-background;
+        color: $sw-sidebar-navigation-item-icon-color-active;
+    }
+
+    &.is--disabled {
+        cursor: not-allowed;
+        opacity: 0.3;
+    }
+
+    .notification-badge {
+        position: absolute;
+        top: 0;
+        right: 0;
+        transform: translate(-30%, 70%);
+        background: $color-shopware-brand-500;
+        border-radius: 18px;
+        padding: 2px 8px;
+        color: #fff;
+        font-size: $font-size-extra-small;
+        font-style: normal;
+    }
+}

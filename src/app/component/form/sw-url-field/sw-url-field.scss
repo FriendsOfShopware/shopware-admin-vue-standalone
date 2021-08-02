@@ -1,0 +1,20 @@
+@import "~scss/variables";
+$sw-field-color-secure: $color-emerald-500;
+
+.sw-field {
+    .sw-field__url-input__prefix {
+        display: inline-flex;
+        cursor: pointer;
+        user-select: none;
+        margin: -12px -15px;
+        padding: 12px 15px;
+
+        &.is--ssl {
+            color: $sw-field-color-secure;
+        }
+
+        .sw-icon {
+            margin-right: 4px;
+        }
+    }
+}

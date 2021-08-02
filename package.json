@@ -1,11 +1,11 @@
 {
   "name": "administration",
   "description": "Shopware administration",
-  "version": "1.0.0",
-  "main": "dist/administration.js",
+  "version": "0.0.1",
+  "main": "dist/main.js",
   "files": [
-    "dist/administration.js",
-    "dist/assets/*"
+    "dist/main.js",
+    "dist/main.css"
   ],
   "scripts": {
     "build": "webpack --config config/webpack.config.js"

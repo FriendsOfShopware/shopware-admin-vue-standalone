@@ -1,0 +1,142 @@
+@import "~scss/variables";
+@import "~scss/mixins";
+@import "sw-label-variant";
+$sw-label-border-radius: $border-radius-default / 2;
+$sw-label-pill-border-radius: 50px;
+
+.sw-label {
+    display: inline-block;
+    position: relative;
+    max-width: 100%;
+    min-width: 56px;
+    margin: 0 6px 6px 0;
+    padding: 8px 12px;
+    line-height: 14px;
+    font-size: 12px;
+    height: 32px;
+    border: 1px solid $color-gray-300;
+    background: $color-gray-50;
+    border-radius: $sw-label-border-radius;
+    color: $color-darkgray-200;
+    cursor: default;
+
+    .sw-label__caption {
+        @include truncate();
+
+        display: inline-block;
+        width: 100%;
+    }
+
+    &.sw-label--dismissable:hover {
+        border-color: $color-shopware-brand-500;
+
+        .sw-label__caption {
+            width: calc(100% - 15px);
+        }
+
+        .sw-label__dismiss {
+            display: inline-block;
+            color: $color-shopware-brand-500;
+            background: transparent;
+        }
+    }
+
+    &.sw-label--size-medium {
+        height: 24px;
+        padding: 4px 12px;
+    }
+
+    &.sw-label--size-small {
+        height: 16px;
+        padding: 0 8px;
+    }
+
+    .sw-label__dismiss {
+        display: none;
+        position: absolute;
+        height: 100%;
+        right: 10px;
+        top: 0;
+        color: $color-darkgray-200;
+        background-color: $color-gray-50;
+        border: 0 none;
+        cursor: pointer;
+        outline: none;
+
+        .sw-icon {
+            width: 12px;
+            height: 12px;
+        }
+    }
+
+    &.sw-label--ghost {
+        background: transparent;
+        border-color: $color-gray-300;
+    }
+
+    &.sw-label--appearance-pill {
+        border-radius: $sw-label-pill-border-radius;
+    }
+
+    &.sw-label--appearance-circle {
+        width: 24px;
+        height: 24px;
+        border-radius: 100%;
+        padding: 4px;
+        border: 0;
+        min-width: 24px;
+    }
+
+    &.sw-label--caps {
+        text-transform: uppercase;
+    }
+
+    &.sw-label--info,
+    &.sw-label--danger,
+    &.sw-label--success,
+    &.sw-label--warning,
+    &.sw-label--neutral {
+        &.sw-label--small {
+            font-weight: 600;
+            line-height: 14px;
+            font-size: 12px;
+            padding: 0 5px;
+            padding-left: 15px;
+            height: 16px;
+        }
+
+        &.sw-label--small::before {
+            content: '';
+            display: block;
+            height: 6px;
+            width: 6px;
+            position: absolute;
+            top: 4px;
+            left: 5px;
+        }
+    }
+
+    &.sw-label--info {
+        @include sw-label-variant($color-shopware-brand-50, $color-shopware-brand-500, $color-shopware-brand-500);
+    }
+
+    &.sw-label--success {
+        @include sw-label-variant($color-emerald-50, $color-emerald-500, $color-emerald-500);
+    }
+
+    &.sw-label--danger {
+        @include sw-label-variant($color-crimson-50, $color-crimson-500, $color-crimson-500);
+    }
+
+    &.sw-label--warning {
+        @include sw-label-variant($color-pumpkin-spice-50, $color-pumpkin-spice-500, $color-pumpkin-spice-500);
+    }
+
+    &.sw-label--neutral {
+        @include sw-label-variant($color-gray-50, $color-darkgray-200, $color-gray-300);
+    }
+
+    &.sw-label--primary {
+        @include sw-label-variant($color-shopware-brand-500, $color-shopware-brand-50, $color-shopware-brand-500);
+    }
+}
