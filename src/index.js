@@ -16,8 +16,42 @@ import './app/mixin/salutation.mixin'
 import './app/mixin/sw-inline-snippet.mixin'
 import './app/mixin/validation.mixin'
 
+import './test/base/sw-address';
+import './test/base/sw-alert';
+import './test/base/sw-button';
+import './test/base/sw-button-group';
+import './test/base/sw-button-process';
+import './test/base/sw-card';
+import './test/base/sw-card-filter';
+import './test/base/sw-card-section';
+import './test/base/sw-chart';
+import './test/base/sw-circle-icon';
+import './test/base/sw-collapse';
+import './test/base/sw-container';
+import './test/base/sw-description-list';
+import './test/base/sw-empty-state';
+import './test/base/sw-help-text';
+import './test/base/sw-highlight-text';
+import './test/base/sw-icon';
+import './test/base/sw-inheritance-switch';
+import './test/base/sw-label';
+import './test/base/sw-modal';
+import './test/base/sw-price-preview';
+import './test/base/sw-product-image';
+import './test/base/sw-product-variant-info';
+import './test/base/sw-radio-panel';
+import './test/base/sw-rating-stars';
+import './test/base/sw-simple-search-field';
+import './test/base/sw-tabs';
+import './test/base/sw-tabs-item';
+import './test/base/sw-user-card';
 
-import './test/sw-pagination';
+import './test/data-grid/sw-data-grid';
+import './test/data-grid/sw-data-grid-column-boolean';
+import './test/data-grid/sw-data-grid-inline-edit';
+import './test/data-grid/sw-data-grid-settings';
+import './test/data-grid/sw-data-grid-skeleton';
+
 import './test/form/field-base/sw-base-field';
 import './test/form/field-base/sw-block-field';
 import './test/form/field-base/sw-contextual-field';
@@ -62,6 +96,31 @@ import './test/form/sw-text-editor';
 import './test/form/sw-text-field';
 import './test/form/sw-textarea-field';
 import './test/form/sw-url-field';
+
+import './test/grid/sw-grid';
+import './test/grid/sw-grid-column';
+import './test/grid/sw-grid-row';
+import './test/grid/sw-pagination';
+
+import './test/modal/sw-confirm-modal';
+
+import './test/sidebar/sw-sidebar';
+import './test/sidebar/sw-sidebar-collapse';
+import './test/sidebar/sw-sidebar-item';
+import './test/sidebar/sw-sidebar-navigation-item';
+
+import './test/utils/sw-color-badge';
+import './test/utils/sw-external-link';
+import './test/utils/sw-inherit-wrapper';
+import './test/utils/sw-internal-link';
+import './test/utils/sw-loader';
+import './test/utils/sw-overlay';
+import './test/utils/sw-popover';
+import './test/utils/sw-progress-bar';
+import './test/utils/sw-step-display';
+import './test/utils/sw-step-item';
+import './test/utils/sw-text-preview';
+import './test/utils/sw-vnode-renderer';
 
 class Main {
 

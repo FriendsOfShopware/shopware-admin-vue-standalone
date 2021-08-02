@@ -1,0 +1,34 @@
+@import '~scss/variables';
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: $font-family-default;
+    font-size: $font-size-default;
+    color: $color-menu-start;
+    background: $color-gray-50;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+html,
+body,
+#app {
+    height: 100%;
+    overflow: hidden;
+}
+
+.sw-drag-select-box {
+    position: absolute;
+    background: $color-drag-select-box;
+    z-index: $z-index-drag-select-box;
+}
+
+.link {
+    display: inline-block;
+    color: $color-shopware-brand-500;
+}

@@ -1,5 +1,6 @@
 const path = require('path');
-const VueLoaderPlugin = require('vue-loader/lib/plugin')
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   entry: path.resolve(__dirname + './../index.js'),
@@ -14,6 +15,7 @@ module.exports = {
     alias: {
       vue: 'vue/dist/vue.js',
       'src': path.resolve(__dirname, '../src'),
+      '~scss/variables': path.resolve(__dirname, '../src/app/assets/scss/variables.scss'),
     }
   },
   module: {
@@ -33,6 +35,7 @@ module.exports = {
       {
         test: /\.css$/,
         use: [
+          MiniCssExtractPlugin.loader,
           'vue-style-loader',
           'css-loader'
         ]
@@ -40,6 +43,7 @@ module.exports = {
       {
         test: /\.s[ac]ss$/i,
         use: [
+          MiniCssExtractPlugin.loader,
           'style-loader',
           'css-loader',
           'sass-loader',
@@ -48,6 +52,10 @@ module.exports = {
     ]
   },
   plugins: [
-    new VueLoaderPlugin()
+    new VueLoaderPlugin(),
+    new MiniCssExtractPlugin({
+      filename: "[name].css",
+      chunkFilename: "[id].css"
+    })
   ]
 }
