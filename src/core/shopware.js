@@ -3,7 +3,7 @@ const MixinFactory = require('src/core/factory/mixin.factory').default;
 const ComponentFactory = require('../core/factory/component.factory').default;
 const TemplateFactory = require('../core/factory/template.factory').default;
 const utils = require('../core/service/util.service').default;
-
+const data = require('src/core/data/index').default;
 const ShopwareError = require('src/core/data/ShopwareError').default;
 
 const Shopware = function Shopware() {
@@ -50,6 +50,12 @@ const Shopware = function Shopware() {
         register: MixinFactory.register,
         getByName: MixinFactory.getByName
     };
+
+    /**
+     * @memberOf module:Shopware
+     * @type {Object}
+     */
+    this.Data = data;
 
     /**
      * @memberOf module:Shopware

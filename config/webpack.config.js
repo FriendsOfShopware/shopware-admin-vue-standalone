@@ -17,6 +17,7 @@ module.exports = {
       'src': path.resolve(__dirname, '../src'),
       '~scss/variables': path.resolve(__dirname, '../src/app/assets/scss/variables.scss'),
       '~scss/mixins': path.resolve(__dirname, '../src/app/assets/scss/mixins.scss'),
+      '~scss/global': path.resolve(__dirname, '../src/app/assets/scss/global.scss'),
     }
   },
   module: {

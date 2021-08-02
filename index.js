@@ -1,12 +1,14 @@
 import Main from './src';
 
 export default {
-  install(Vue) {
+  install(Vue, options) {
     const main = new Main()
     const components = main.initComponents();
 
     for (const [componentName, component] of Object.entries(components)) {
-      console.log(componentName, component);
+      component.prototype.$t = options?.translate?.t || (() => {});
+      component.prototype.$tc = options?.translate?.tc || (() => {});
+
       Vue.component(componentName, component);
     }
   }

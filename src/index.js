@@ -1,9 +1,13 @@
 import Vue from 'vue';
+import VueI18n from 'vue-i18n'
 import Shopware from './core/shopware';
 import ComponentFactory from './core/factory/component.factory';
 
+Vue.use(VueI18n);
+
 const { Component, Mixin } = Shopware;
 
+import '~scss/global';
 
 import './app/mixin/form-field.mixin'
 import './app/mixin/index'

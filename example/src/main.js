@@ -2,18 +2,24 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import SW from 'administration';
-import 'administration/dist/assets/sw-6.4.2.1/css/app.css';
+import 'administration/dist/main.css';
 import App from './App'
 import router from './router'
 import VueI18n from 'vue-i18n'
 
-Vue.use(SW);
 Vue.use(VueI18n);
 
 const i18n = new VueI18n({
   locale: 'de',
   fallbackLocale: 'de',
   messages: {
+  }
+});
+
+Vue.use(SW, {
+  translate: {
+    t: () => {return 'test'},
+    tc: () => {return 'test'},
   }
 });
 
