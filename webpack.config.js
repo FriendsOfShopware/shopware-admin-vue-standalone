@@ -4,9 +4,9 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyPlugin = require("copy-webpack-plugin");
 
 module.exports = {
-  entry: path.resolve(__dirname + './../index.js'),
+  entry: path.resolve(__dirname, './index.js'),
   output: {
-    path: path.resolve(__dirname + './../dist'),
+    path: path.resolve(__dirname, './dist'),
     filename: 'main.js',
     libraryTarget: 'umd',
     library: 'main',
@@ -15,10 +15,10 @@ module.exports = {
   resolve: {
     alias: {
       vue: 'vue/dist/vue.js',
-      'src': path.resolve(__dirname, '../src'),
-      '~scss/variables': path.resolve(__dirname, '../src/app/assets/scss/variables.scss'),
-      '~scss/mixins': path.resolve(__dirname, '../src/app/assets/scss/mixins.scss'),
-      '~scss/global': path.resolve(__dirname, '../src/app/assets/scss/global.scss'),
+      'src': path.resolve(__dirname, './src'),
+      '~scss/variables': path.resolve(__dirname, './src/app/assets/scss/variables.scss'),
+      '~scss/mixins': path.resolve(__dirname, './src/app/assets/scss/mixins.scss'),
+      '~scss/global': path.resolve(__dirname, './src/app/assets/scss/global.scss'),
     }
   },
   module: {
@@ -53,7 +53,7 @@ module.exports = {
       {
         test: /\.svg$/,
         include: [
-          path.join(__dirname, '../src/app/assets/icons/svg')
+          path.join(__dirname, './src/app/assets/icons/svg')
         ],
         loader: 'svg-inline-loader',
         options: {
@@ -70,7 +70,7 @@ module.exports = {
     }),
     new CopyPlugin({
       patterns: [
-        { from: path.resolve(__dirname + './../src/app/snippet'), to: path.resolve(__dirname + './../dist/snippet') },
+        { from: path.resolve(__dirname, './src/app/snippet'), to: path.resolve(__dirname, './dist/snippet') },
       ],
     }),
   ]

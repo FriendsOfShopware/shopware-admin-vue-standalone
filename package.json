@@ -9,7 +9,7 @@
     "dist/snippet"
   ],
   "scripts": {
-    "build": "webpack --config config/webpack.config.js"
+    "build": "webpack --config webpack.config.js"
   },
   "dependencies": {
     "@babel/runtime": "7.13.17",
