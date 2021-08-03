@@ -5,7 +5,8 @@
   "main": "dist/main.js",
   "files": [
     "dist/main.js",
-    "dist/main.css"
+    "dist/main.css",
+    "dist/snippet"
   ],
   "scripts": {
     "build": "webpack --config config/webpack.config.js"

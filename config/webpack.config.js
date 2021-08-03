@@ -1,6 +1,7 @@
 const path = require('path');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CopyPlugin = require("copy-webpack-plugin");
 
 module.exports = {
   entry: path.resolve(__dirname + './../index.js'),
@@ -66,6 +67,11 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: "[name].css",
       chunkFilename: "[id].css"
-    })
+    }),
+    new CopyPlugin({
+      patterns: [
+        { from: path.resolve(__dirname + './../src/app/snippet'), to: path.resolve(__dirname + './../dist/snippet') },
+      ],
+    }),
   ]
 }

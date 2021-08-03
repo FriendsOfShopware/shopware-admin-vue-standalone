@@ -1,6 +1,7 @@
 <template>
     <sw-page class="sw-product-list" :showSmartBar="false" :showSearchBar="false">
       <template #content>
+        <sw-boolean-filter :value="true" title="test" active />
         <sw-data-grid
           fullPage
           :dataSource="[

@@ -3,6 +3,8 @@
 import Vue from 'vue'
 import Shopware from 'administration';
 import 'administration/dist/main.css';
+import de from 'administration/dist/snippet/de-DE.json';
+import en from 'administration/dist/snippet/en-GB.json';
 import App from './App'
 import router from './router'
 import VueI18n from 'vue-i18n'
@@ -10,16 +12,19 @@ import VueI18n from 'vue-i18n'
 Vue.use(VueI18n);
 
 const i18n = new VueI18n({
-  locale: 'de',
-  fallbackLocale: 'de',
+  locale: 'en',
+  fallbackLocale: 'en',
   messages: {
+    de,
+    en
   }
 });
 
 Vue.use(Shopware, {
   translate: {
-    t: () => {return 'test'},
-    tc: () => {return 'test'},
+    t: (key, values) => i18n.t(key, values),
+    tc: (key, choice, values) => i18n.tc(key, choice, values),
+    te: (key, locale) => i18n.te(key, locale),
   }
 });
 
