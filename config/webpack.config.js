@@ -49,6 +49,16 @@ module.exports = {
           'sass-loader',
         ]
       },
+      {
+        test: /\.svg$/,
+        include: [
+          path.join(__dirname, '../src/app/assets/icons/svg')
+        ],
+        loader: 'svg-inline-loader',
+        options: {
+          removeSVGTagAttrs: false
+        }
+      }
     ]
   },
   plugins: [
