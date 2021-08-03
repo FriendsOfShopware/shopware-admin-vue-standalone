@@ -24,6 +24,7 @@
     "copy-webpack-plugin": "6.4.1",
     "lodash": "4.17.21",
     "md5-es": "1.8.2",
+    "dompurify": "2.2.6",
     "twig": "1.13.3",
     "uuid": "3.3.2",
     "vue": "2.6.10",

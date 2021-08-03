@@ -1,16 +1,16 @@
 import Vue from 'vue';
-import VueI18n from 'vue-i18n'
-import Shopware from './core/shopware';
-import ComponentFactory from './core/factory/component.factory';
+import Shopware from 'src/core/shopware';
+import ComponentFactory from 'src/core/factory/component.factory';
+import DirectiveFactory from 'src/core/factory/directive.factory';
 import initializers from 'src/app/init';
-
-Vue.use(VueI18n);
+import VuePlugins from 'src/app/plugin';
 
 const { Component, Mixin } = Shopware;
 
 import '~scss/global';
 
 initializers.coreMixin();
+initializers.coreDirectives();
 initializers.baseComponents();
 initializers.svgIcons();
 
@@ -27,6 +27,9 @@ class Main {
    * @returns {Object}
    */
   initComponents() {
+    this.initPlugins();
+    this.initDirectives();
+
     const componentRegistry = this.componentFactory.getComponentRegistry();
     this.componentFactory.resolveComponentTemplates();
 
@@ -85,6 +88,38 @@ class Main {
     if (componentConfig.extends) {
       this.resolveMixins(componentConfig.extends);
     }
+  }
+
+  /**
+   * Initialises all plugins for VueJS
+   *
+   * @private
+   * @memberOf module:app/adapter/view/vue
+   */
+  initPlugins() {
+    // Add the community plugins to the plugin list
+    VuePlugins.forEach((plugin) => {
+      Vue.use(plugin);
+    });
+
+    return true;
+  }
+
+  /**
+   * Initializes all custom directives.
+   *
+   * @private
+   * @memberOf module:app/adapter/view/vue
+   * @returns {Boolean}
+   */
+  initDirectives() {
+    const registry = DirectiveFactory.getDirectiveRegistry();
+
+    registry.forEach((directive, name) => {
+      Vue.directive(name, directive);
+    });
+
+    return true;
   }
 }
 

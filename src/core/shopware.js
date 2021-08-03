@@ -1,10 +1,15 @@
 const ClassesFactory = require('src/core/factory/classes-factory').default;
 const MixinFactory = require('src/core/factory/mixin.factory').default;
 const ComponentFactory = require('../core/factory/component.factory').default;
+const DirectiveFactory = require('src/core/factory/directive.factory').default;
 const TemplateFactory = require('../core/factory/template.factory').default;
 const utils = require('../core/service/util.service').default;
 const data = require('src/core/data/index').default;
 const ShopwareError = require('src/core/data/ShopwareError').default;
+const FlatTreeHelper = require('src/core/helper/flattree.helper').default;
+const SanitizerHelper = require('src/core/helper/sanitizer.helper').default;
+const DeviceHelper = require('src/core/helper/device.helper').default;
+const MiddlewareHelper = require('src/core/helper/middleware.helper').default;
 
 const Shopware = function Shopware() {
 
@@ -69,6 +74,27 @@ const Shopware = function Shopware() {
           _private: {}
       }
     );
+
+    /**
+     * @memberOf module:Shopware
+     * @type {Object}
+     */
+    this.Helper = {
+        FlatTreeHelper: FlatTreeHelper,
+        MiddlewareHelper: MiddlewareHelper,
+        SanitizerHelper: SanitizerHelper,
+        DeviceHelper: DeviceHelper
+    };
+
+    /**
+     * @memberOf module:Shopware
+     * @type {Object}
+     */
+    this.Directive = {
+        register: DirectiveFactory.registerDirective,
+        getByName: DirectiveFactory.getDirectiveByName,
+        getDirectiveRegistry: DirectiveFactory.getDirectiveRegistry
+    };
 };
 
 const ShopwareInstance = new Shopware();

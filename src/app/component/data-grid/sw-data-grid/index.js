@@ -29,10 +29,6 @@ const utils = Shopware.Utils;
 Component.register('sw-data-grid', {
     template,
 
-    inject: [
-        'repositoryFactory'
-    ],
-
     props: {
         dataSource: {
             type: Array,
@@ -226,10 +222,6 @@ Component.register('sw-data-grid', {
             }, true);
         },
 
-        userConfigRepository() {
-            return this.repositoryFactory.create('user_config');
-        },
-
         currentUser() {
             return Shopware.State.get('session').currentUser;
         },
@@ -312,37 +304,6 @@ Component.register('sw-data-grid', {
         initGridColumns() {
             this.currentColumns = this.getDefaultColumns();
             this.findResizeColumns();
-
-            if (!this.identifier) {
-                return;
-            }
-            this.findUserSetting();
-        },
-
-        findUserSetting() {
-            return this.userConfigRepository.search(this.userGridSettingCriteria, Shopware.Context.api).then((response) => {
-                if (!response.length) {
-                    return;
-                }
-                this.currentSetting = response[0];
-                const gridColumns = response[0].value;
-                this.currentColumns = gridColumns?.columns ?? gridColumns;
-                this.compact = gridColumns?.compact ?? this.compact;
-                this.previews = gridColumns?.previews ?? this.previews;
-            });
-        },
-
-        findUserSettingById() {
-            return this.userConfigRepository.get(this.currentSetting.id, Shopware.Context.api).then((response) => {
-                if (!response) {
-                    return;
-                }
-                this.currentSetting = response;
-                const gridColumns = response.value;
-                this.currentColumns = gridColumns?.columns ?? gridColumns;
-                this.compact = gridColumns?.compact ?? this.compact;
-                this.previews = gridColumns?.previews ?? this.previews;
-            });
         },
 
         findResizeColumns() {
@@ -381,32 +342,6 @@ Component.register('sw-data-grid', {
             });
         },
 
-        createUserGridSetting() {
-            const newUserGrid = this.userConfigRepository.create(Shopware.Context.api);
-            newUserGrid.key = `grid.setting.${this.identifier}`;
-            newUserGrid.userId = this.currentUser && this.currentUser.id;
-            this.currentSetting = newUserGrid;
-        },
-
-        saveUserSettings() {
-            if (!this.identifier) {
-                return;
-            }
-
-            if (!this.currentSetting.id) {
-                this.createUserGridSetting();
-            }
-
-            this.currentSetting.value = {
-                columns: this.currentColumns,
-                compact: this.compact,
-                previews: this.previews
-            };
-            this.userConfigRepository.save(this.currentSetting, Shopware.Context.api).then(() => {
-                this.findUserSettingById();
-            });
-        },
-
         getHeaderCellClasses(column, index) {
             return [
                 {
@@ -440,24 +375,18 @@ Component.register('sw-data-grid', {
 
         onChangeCompactMode(value) {
             this.compact = value;
-            this.saveUserSettings();
         },
 
         onChangePreviews(value) {
             this.previews = value;
-            this.saveUserSettings();
         },
 
         onChangeColumnVisibility(value, index) {
             this.currentColumns[index].visible = value;
-
-            this.saveUserSettings();
         },
 
         onChangeColumnOrder(currentColumnIndex, newColumnIndex) {
             this.currentColumns = this.orderColumns(this.currentColumns, currentColumnIndex, newColumnIndex);
-
-            this.saveUserSettings();
         },
 
         orderColumns(columns, oldColumnIndex, newColumnIndex) {
@@ -488,8 +417,6 @@ Component.register('sw-data-grid', {
 
         hideColumn(columnIndex) {
             this.currentColumns[columnIndex].visible = false;
-
-            this.saveUserSettings();
         },
 
         renderColumn(item, column) {
