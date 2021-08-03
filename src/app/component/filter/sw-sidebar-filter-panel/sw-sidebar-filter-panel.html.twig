@@ -15,6 +15,7 @@
                 ref="filterPanel"
                 v-on="$listeners"
                 v-bind="$attrs">
+                <slot></slot>
             </sw-filter-panel>
         {% endblock %}
     </sw-sidebar-item>

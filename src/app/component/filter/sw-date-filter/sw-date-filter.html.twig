@@ -2,11 +2,10 @@
     <sw-range-filter
         class="sw-date-filter"
         :value="dateValue"
-        :title="filter.label"
+        :title="title"
         :active="active"
         :showResetButton="!!dateValue.from || !!dateValue.to"
         :isShowDivider="!isDateTimeType"
-        :property="filter.property"
         @filter-update="updateFilter"
         @filter-reset="resetFilter">
         {% block sw_date_filter_from_field %}
@@ -16,7 +15,7 @@
                     v-bind="$attrs"
                     class="sw-date-filter__from"
                     :dateType="dateType"
-                    :placeholder="filter.fromPlaceholder"
+                    :placeholder="fromPlaceholder"
                     :label="$tc('global.default.from')">
                 </sw-datepicker>
             </template>
@@ -29,7 +28,7 @@
                     v-bind="$attrs"
                     class="sw-date-filter__to"
                     :dateType="dateType"
-                    :placeholder="filter.toPlaceholder"
+                    :placeholder="toPlaceholder"
                     :label="$tc('global.default.to')">
                 </sw-datepicker>
             </template>

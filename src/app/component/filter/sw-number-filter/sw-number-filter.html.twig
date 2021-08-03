@@ -1,11 +1,9 @@
 {% block sw_number_filter %}
     <sw-range-filter
         class="sw-number-filter"
-        :title="filter.label"
-        :filter="filter"
+        :title="title"
         :active="active"
         :value="numberValue"
-        :property="filter.property"
         :showResetButton="!!numberValue.from || !!numberValue.to"
         @filter-update="updateFilter"
         @filter-reset="resetFilter">
@@ -16,7 +14,7 @@
                     v-bind="$attrs"
                     class="sw-number-filter__from"
                     :label="$tc('global.default.from')"
-                    :placeholder="filter.fromPlaceholder">
+                    :placeholder="fromPlaceholder">
                 </sw-number-field>
             </template>
         {% endblock %}
@@ -28,7 +26,7 @@
                     v-bind="$attrs"
                     class="sw-number-filter__to"
                     :label="$tc('global.default.to')"
-                    :placeholder="filter.toPlaceholder">
+                    :placeholder="toPlaceholder">
                 </sw-number-field>
             </template>
         {% endblock %}

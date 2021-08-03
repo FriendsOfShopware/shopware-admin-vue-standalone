@@ -2,7 +2,6 @@ import template from './sw-range-filter.html.twig';
 import './sw-range-filter.scss';
 
 const { Component } = Shopware;
-const { Criteria } = Shopware.Data;
 
 Component.register('sw-range-filter', {
     template,
@@ -10,11 +9,6 @@ Component.register('sw-range-filter', {
     props: {
         value: {
             type: Object,
-            required: true
-        },
-
-        property: {
-            type: String,
             required: true
         },
 
@@ -51,8 +45,7 @@ Component.register('sw-range-filter', {
                 ...(range.to ? { lte: range.to } : {})
             };
 
-            const filterCriteria = [Criteria.range(this.property, params)];
-            this.$emit('filter-update', filterCriteria);
+            this.$emit('input', params);
         }
     }
 });

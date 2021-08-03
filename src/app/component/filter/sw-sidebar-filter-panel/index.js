@@ -15,7 +15,7 @@ Component.register('sw-sidebar-filter-panel', {
 
     methods: {
         resetAll() {
-            this.$refs.filterPanel.resetAll();
+            this.$emit('filter-reset-all');
         }
     }
 });

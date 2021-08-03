@@ -1,12 +1,12 @@
 {% block sw_existence_filter %}
     <div class="sw-existence-filter">
-        <sw-base-filter :title="filter.label"
+        <sw-base-filter :title="title"
                         :showResetButton="!!value"
                         :active="active"
                         @filter-reset="resetFilter">
             {% block sw_existence_filter_content %}
                 <sw-select-field :value="value"
-                                 :placeholder="filter.placeholder"
+                                 :placeholder="placeholder"
                                  @change="changeValue">
                     <option :value="true">{{ filter.optionHasCriteria }}</option>
                     <option :value="false">{{ filter.optionNoCriteria }}</option>

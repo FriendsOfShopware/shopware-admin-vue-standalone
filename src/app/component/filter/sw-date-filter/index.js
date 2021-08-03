@@ -10,14 +10,35 @@ Component.register('sw-date-filter', {
     template,
 
     props: {
-        filter: {
+        title: {
+            type: String,
+            required: true
+        },
+
+        value: {
             type: Object,
             required: true
+        },
+
+        fromPlaceholder: {
+            type: String,
+            default: null
+        },
+
+        toPlaceholder: {
+            type: String,
+            default: null
         },
 
         active: {
             type: Boolean,
             required: true
+        },
+
+        dateType: {
+            type: String,
+            default: 'date',
+            validate: (value) => ['time', 'date', 'datetime', 'datetime-local'].includes(value)
         }
     },
 
@@ -31,47 +52,37 @@ Component.register('sw-date-filter', {
     },
 
     computed: {
-        dateType() {
-            if (['time', 'date', 'datetime', 'datetime-local'].includes(this.filter.dateType)) {
-                return this.filter.dateType;
-            }
-
-            return 'date';
-        },
-
         isDateTimeType() {
             return this.dateType === 'datetime' || this.dateType === 'datetime-local';
         }
     },
 
     watch: {
-        'filter.value': {
+        value: {
             handler() {
-                if (this.filter.value) {
-                    this.dateValue = { ...this.filter.value };
+                if (this.value) {
+                    this.dateValue = { ...this.value };
                 }
             }
         }
     },
 
     methods: {
-        updateFilter(params) {
+        updateFilter() {
             if (!this.dateValue.from && !this.dateValue.to) {
-                this.$emit('filter-reset', this.filter.name);
+                this.$emit('filter-reset');
                 return;
             }
 
-            const { value } = this.filter;
-            if (value && value.from === this.dateValue.from && value.to === this.dateValue.to) {
+            if (this.value && this.value.from === this.dateValue.from && this.value.to === this.dateValue.to) {
                 return;
             }
 
-            this.$emit('filter-update', this.filter.name, params, this.dateValue);
+            this.$emit('input', this.dateValue);
         },
 
         resetFilter() {
-            this.dateValue = { from: null, to: null };
-            this.$emit('filter-reset', this.filter.name, this.dateValue);
+            this.$emit('filter-reset');
         }
     }
 });

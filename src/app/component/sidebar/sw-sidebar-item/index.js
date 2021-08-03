@@ -80,17 +80,25 @@ Component.register('sw-sidebar-item', {
         }
     },
 
-    created() {
-        this.createdComponent();
+    // This is the quick fix to use this component as NPM package. Changed from "created" to "mounted".
+    mounted() {
+        this.mountedComponent();
     },
 
     methods: {
-        createdComponent() {
+        mountedComponent() {
             let parent = this.$parent;
 
             while (parent) {
                 if (parent.$options.name === 'sw-sidebar') {
                     parent.registerSidebarItem(this);
+                    return;
+                }
+
+                // This is the quick fix to use this component as NPM package.
+                const sidebar = parent?.$refs['sw-sidebar'];
+                if (sidebar && sidebar.$options._componentTag === 'sw-sidebar') {
+                    sidebar.registerSidebarItem(this);
                     return;
                 }
 

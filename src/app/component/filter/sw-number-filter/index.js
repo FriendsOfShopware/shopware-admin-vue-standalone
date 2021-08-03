@@ -10,9 +10,24 @@ Component.register('sw-number-filter', {
     template,
 
     props: {
-        filter: {
+        title: {
+            type: String,
+            required: true
+        },
+
+        value: {
             type: Object,
             required: true
+        },
+
+        fromPlaceholder: {
+            type: String,
+            default: null
+        },
+
+        toPlaceholder: {
+            type: String,
+            default: null
         },
 
         active: {
@@ -31,33 +46,31 @@ Component.register('sw-number-filter', {
     },
 
     watch: {
-        'filter.value': {
+        value: {
             handler() {
-                if (this.filter.value) {
-                    this.numberValue = { ...this.filter.value };
+                if (this.value) {
+                    this.numberValue = { ...this.value };
                 }
             }
         }
     },
 
     methods: {
-        updateFilter(params) {
+        updateFilter() {
             if (!this.numberValue.from && !this.numberValue.to) {
-                this.$emit('filter-reset', this.filter.name);
+                this.$emit('filter-reset');
                 return;
             }
 
-            const { value } = this.filter;
-            if (value && value.from === this.numberValue.from && value.to === this.numberValue.to) {
+            if (this.value && this.value.from === this.numberValue.from && this.value.to === this.numberValue.to) {
                 return;
             }
 
-            this.$emit('filter-update', this.filter.name, params, this.numberValue);
+            this.$emit('filter-update', this.numberValue);
         },
 
         resetFilter() {
-            this.numberValue = { from: null, to: null };
-            this.$emit('filter-reset', this.filter.name, this.numberValue);
+            this.$emit('filter-reset');
         }
     }
 });

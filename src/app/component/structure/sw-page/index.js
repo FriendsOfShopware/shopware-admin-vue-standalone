@@ -151,7 +151,6 @@ Component.register('sw-page', {
         },
 
         mountedComponent() {
-            this.initPage();
             this.readScreenWidth();
             this.setScrollbarOffset();
         },
@@ -185,16 +184,6 @@ Component.register('sw-page', {
 
             if (contentEl !== null) {
                 this.scrollbarOffset = dom.getScrollbarWidth(contentEl);
-            }
-        },
-
-        initPage() {
-            if (this.$route.meta.$module) {
-                this.module = this.$route.meta.$module;
-            }
-
-            if (this.$route.meta.parentPath) {
-                this.parentRoute = this.$route.meta.parentPath;
             }
         }
     }

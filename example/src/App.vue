@@ -25,13 +25,17 @@
         </sw-data-grid>
       </template>
       <template #sidebar>
-        <sw-sidebar>
+        <sw-sidebar ref="sw-sidebar">
           <sw-sidebar-item
             icon="default-arrow-360-left"
             :title="$tc('sw-product.list.titleSidebarItemRefresh')">
           </sw-sidebar-item>
 
-          <sw-sidebar-filter-panel entity="product">
+          <sw-sidebar-filter-panel :activeFilterNumber="1">
+            <sw-filter-panel-item>
+              <sw-boolean-filter title="Test" :value="false" placeholder="Test" active></sw-boolean-filter>
+              <sw-date-filter title="Test" :value="{ from: null, to: null }" active from-placeholder="Test" to-placeholder="Test"></sw-date-filter>
+            </sw-filter-panel-item>
           </sw-sidebar-filter-panel>
         </sw-sidebar>
       </template>
