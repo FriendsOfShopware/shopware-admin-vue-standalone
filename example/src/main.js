@@ -1,7 +1,7 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
-import SW from 'administration';
+import Shopware from 'administration';
 import 'administration/dist/main.css';
 import App from './App'
 import router from './router'
@@ -16,7 +16,7 @@ const i18n = new VueI18n({
   }
 });
 
-Vue.use(SW, {
+Vue.use(Shopware, {
   translate: {
     t: () => {return 'test'},
     tc: () => {return 'test'},
