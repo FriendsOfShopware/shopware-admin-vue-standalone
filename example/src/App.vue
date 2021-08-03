@@ -34,7 +34,15 @@
           <sw-sidebar-filter-panel :activeFilterNumber="1">
             <sw-filter-panel-item>
               <sw-boolean-filter title="Test" :value="false" placeholder="Test" active></sw-boolean-filter>
+            </sw-filter-panel-item>
+            <sw-filter-panel-item>
               <sw-date-filter title="Test" :value="{ from: null, to: null }" active from-placeholder="Test" to-placeholder="Test"></sw-date-filter>
+            </sw-filter-panel-item>
+            <sw-filter-panel-item>
+              <sw-existence-filter title="Test" :value="false" placeholder="Test" active optionHasCriteria="true" optionNoCriteria="false"></sw-existence-filter>
+            </sw-filter-panel-item>
+            <sw-filter-panel-item>
+              <sw-number-filter title="Test" :value="{ from: null, to: null }" active from-placeholder="Test" to-placeholder="Test"></sw-number-filter>
             </sw-filter-panel-item>
           </sw-sidebar-filter-panel>
         </sw-sidebar>

@@ -66,7 +66,7 @@ Component.register('sw-number-filter', {
                 return;
             }
 
-            this.$emit('filter-update', this.numberValue);
+            this.$emit('input', this.numberValue);
         },
 
         resetFilter() {

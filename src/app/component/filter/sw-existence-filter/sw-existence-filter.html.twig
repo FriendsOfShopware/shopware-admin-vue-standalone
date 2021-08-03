@@ -5,11 +5,11 @@
                         :active="active"
                         @filter-reset="resetFilter">
             {% block sw_existence_filter_content %}
-                <sw-select-field :value="value"
+                <sw-select-field :value="strValue"
                                  :placeholder="placeholder"
                                  @change="changeValue">
-                    <option :value="true">{{ filter.optionHasCriteria }}</option>
-                    <option :value="false">{{ filter.optionNoCriteria }}</option>
+                    <option :value="true">{{ optionHasCriteria }}</option>
+                    <option :value="false">{{ optionNoCriteria }}</option>
                 </sw-select-field>
             {% endblock %}
         </sw-base-filter>

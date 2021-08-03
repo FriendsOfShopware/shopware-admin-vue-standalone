@@ -5,8 +5,6 @@ const types = Shopware.Utils.types;
  * @module app/mixin/validation
  */
 Mixin.register('validation', {
-    inject: ['validationService'],
-
     props: {
         validation: {
             type: [String, Array, Object, Boolean],
@@ -56,11 +54,7 @@ Mixin.register('validation', {
         },
 
         validateRule(value, rule) {
-            if (typeof this.validationService[rule] === 'undefined') {
-                return false;
-            }
-
-            return this.validationService[rule](value);
+            return true;
         }
     }
 });

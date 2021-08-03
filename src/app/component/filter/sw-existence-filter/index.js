@@ -27,6 +27,30 @@ Component.register('sw-existence-filter', {
         active: {
             type: Boolean,
             required: true
+        },
+
+        optionHasCriteria: {
+            type: String,
+            required: true
+        },
+
+        optionNoCriteria: {
+            type: String,
+            required: true
+        }
+    },
+
+    computed: {
+        strValue() {
+            if (this.value === true) {
+                return 'true';
+            }
+
+            if (this.value === false) {
+                return 'false';
+            }
+
+            return this.value;
         }
     },
 
