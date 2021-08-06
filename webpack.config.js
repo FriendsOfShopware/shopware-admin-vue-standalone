@@ -12,9 +12,11 @@ module.exports = {
     library: 'main',
     umdNamedDefine: true
   },
+  externals: {
+    vue: 'Vue'
+  },
   resolve: {
     alias: {
-      vue: 'vue/dist/vue.js',
       'src': path.resolve(__dirname, './src'),
       '~scss/variables': path.resolve(__dirname, './src/app/assets/scss/variables.scss'),
       '~scss/mixins': path.resolve(__dirname, './src/app/assets/scss/mixins.scss'),
