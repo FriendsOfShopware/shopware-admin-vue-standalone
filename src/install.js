@@ -1,6 +1,6 @@
-import Main from './src';
+import Main from './load';
 
-export default {
+const VueShopwareAdminStandalone = {
   install(Vue, options) {
     const main = new Main()
     const components = main.initComponents(options);
@@ -14,3 +14,10 @@ export default {
     }
   }
 };
+
+// Automatic installation if Vue has been added to the global scope.
+if (typeof window !== 'undefined' && window.Vue) {
+  window.Vue.use(VueShopwareAdminStandalone);
+}
+
+export default VueShopwareAdminStandalone;

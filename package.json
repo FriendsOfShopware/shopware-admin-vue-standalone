@@ -1,87 +1,40 @@
 {
   "name": "@shop-studio/shopware-admin-vue-standalone",
   "description": "Standalone Shopware administration components for Vue",
-  "version": "1.0.0",
-  "main": "dist/main.js",
+  "version": "0.0.5",
+  "private": true,
+  "main": "dist/shopware-admin-vue-standalone.common.js",
   "files": [
-    "dist/main.js",
-    "dist/main.css",
-    "dist/snippet"
+    "dist/*"
   ],
   "scripts": {
-    "build": "webpack --config webpack.config.js"
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build --target lib ./src/install.js && rm ./dist/demo.html",
+    "lint": "vue-cli-service lint"
   },
   "dependencies": {
     "ace-builds": "1.4.5",
+    "core-js": "^3.6.5",
+    "dompurify": "2.2.6",
     "flatpickr": "4.6.3",
     "lodash": "4.17.21",
     "md5-es": "1.8.2",
-    "dompurify": "2.2.6",
     "twig": "1.13.3",
-    "uuid": "3.3.2"
+    "uuid": "3.3.2",
+    "vue": "^2.6.11"
   },
   "devDependencies": {
-    "@babel/core": "7.13.16",
-    "@babel/plugin-proposal-decorators": "7.13.15",
-    "@babel/plugin-proposal-export-namespace-from": "7.12.13",
-    "@babel/plugin-proposal-function-sent": "7.12.13",
-    "@babel/plugin-proposal-json-strings": "7.13.8",
-    "@babel/plugin-proposal-numeric-separator": "7.12.13",
-    "@babel/plugin-proposal-throw-expressions": "7.12.13",
-    "@babel/plugin-syntax-dynamic-import": "7.8.3",
-    "@babel/plugin-syntax-import-meta": "7.10.4",
-    "@babel/plugin-transform-runtime": "7.13.15",
-    "@babel/preset-env": "7.13.15",
-    "@babel/register": "7.13.16",
-    "assets-webpack-plugin": "3.9.10",
-    "babel-eslint": "10.1.0",
-    "babel-loader": "8.0.6",
-    "babel-plugin-istanbul": "5.2.0",
-    "babel-plugin-module-resolver": "3.2.0",
-    "browserslist": "4.6.6",
-    "css-loader": "3.1.0",
-    "file-loader": "4.1.0",
+    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-plugin-eslint": "~4.5.0",
+    "@vue/cli-service": "~4.5.0",
+    "babel-eslint": "^10.1.0",
+    "copy-webpack-plugin": "6.4.1",
     "html-loader": "0.5.5",
-    "html-webpack-plugin": "3.2.0",
-    "mini-css-extract-plugin": "^1.6.2",
     "sass": "1.32.8",
     "sass-loader": "8.0.2",
-    "style-loader": "^2.0.0",
     "svg-inline-loader": "0.8.2",
-    "url-loader": "2.1.0",
-    "vue-loader": "^15.9.7",
-    "vue-style-loader": "4.1.2",
-    "babel-jest": "26.6.3",
-    "babel-plugin-require-context-hook": "1.0.0",
-    "copy-webpack-plugin": "6.4.1",
-    "webpack-dev-middleware": "3.7.0",
-    "webpack-hot-middleware": "2.25.0",
-    "webpack": "4.42.1",
-    "webpack-bundle-analyzer": "3.4.1",
-    "webpack-cli": "3.3.11",
-    "webpack-dev-server": "3.11.0",
-    "webpack-merge": "4.2.1",
-    "worker-loader": "2.0.0",
-    "vue": "2.6.10",
-    "vue-i18n": "8.14.0",
-    "vue-meta": "2.2.0",
-    "vue-router": "3.0.7",
-    "vue-template-compiler": "2.6.10",
-    "@shopware-ag/eslint-config-base": "1.0.0",
-    "@shopware-ag/webpack-copy-after-build": "1.0.1",
-    "@shopware-ag/webpack-kill-process-on-failed-build": "1.0.0",
-    "@shopware-ag/webpack-plugin-injector": "1.0.3",
-    "@babel/runtime": "7.13.17",
-    "@vue/component-compiler-utils": "2.6.0",
-    "@vue/test-utils": "1.1.0"
-  },
-  "peerDependencies": {},
-  "engines": {
-    "node": ">=12.21.0",
-    "npm": ">= 6.5.0"
-  },
-  "browserslist": [
-    "last 2 versions",
-    "safari >= 7"
-  ]
+    "eslint": "^6.7.2",
+    "eslint-plugin-vue": "^6.2.2",
+    "vue-template-compiler": "^2.6.11"
+  }
 }

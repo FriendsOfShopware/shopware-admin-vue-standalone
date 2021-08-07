@@ -1,7 +1,24 @@
+# hello-world
+
+## Project setup
 ```
-vue-cli-service serve
+npm install
 ```
 
+### Compiles and hot-reloads for development
 ```
-npm run build && npm pack && mv administration-1.0.0.tgz example && cd example && npm install administration-1.0.0.tgz
+npm run serve
 ```
+
+### Compiles and minifies for production
+```
+npm run build
+```
+
+### Lints and fixes files
+```
+npm run lint
+```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
