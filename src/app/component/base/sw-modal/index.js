@@ -19,8 +19,6 @@ Component.register('sw-modal', {
 
     inheritAttrs: false,
 
-    inject: ['shortcutService'],
-
     props: {
         title: {
             type: String,
@@ -106,7 +104,6 @@ Component.register('sw-modal', {
 
     methods: {
         createdComponent() {
-            this.shortcutService.stopEventListener();
         },
 
         mountedComponent() {
@@ -117,7 +114,6 @@ Component.register('sw-modal', {
         },
 
         destroyedComponent() {
-            this.shortcutService.startEventListener();
         },
 
         setFocusToModal() {
