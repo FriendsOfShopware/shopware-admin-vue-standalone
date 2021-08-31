@@ -3,12 +3,14 @@ Use Shopware admin components outside of Shopware itself. Handy for developing
 Shopware cloud apps where the backend is integrated via iFrame.
 
 ## Installation
-```
+
+```shell
 npm install shopware-admin-vue-standalone
 ```
 
 ## Usage
-```
+
+```javascript
 import Vue from 'vue';
 import VueI18n from 'vue-i18n';
 import VueShopwareAdminStandalone from 'shopware-admin-vue-standalone';
@@ -18,8 +20,9 @@ Vue.use(VueShopwareAdminStandalone);
 ```
 
 ### With vue-i18n
+
 If you want to use the existing translations, you need to install vue-18n.
-```
+```javascript
 import Vue from 'vue';
 import VueI18n from 'vue-i18n';
 import VueShopwareAdminStandalone from 'shopware-admin-vue-standalone';
