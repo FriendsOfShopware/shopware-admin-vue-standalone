@@ -21,5 +21,5 @@ if (typeof window !== 'undefined' && window.Vue) {
   window.Vue.use(VueShopwareAdminStandalone);
 }
 
-export const Shopware = Shopware;
+export { Shopware };
 export default VueShopwareAdminStandalone;
