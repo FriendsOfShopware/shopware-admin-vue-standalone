@@ -19,6 +19,12 @@ import 'shopware-admin-vue-standalone/dist/shopware-admin-vue-standalone.css';
 Vue.use(VueShopwareAdminStandalone);
 ```
 
+Using Shopware global instance
+
+```javascript
+import { Shopware } from 'shopware-admin-vue-standalone';
+```
+
 ### With vue-i18n
 
 If you want to use the existing translations, you need to install vue-18n.

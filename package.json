@@ -1,7 +1,7 @@
 {
   "name": "shopware-admin-vue-standalone",
   "description": "Standalone Shopware administration components for Vue",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "main": "dist/shopware-admin-vue-standalone.common.js",
   "files": [
     "dist/*"

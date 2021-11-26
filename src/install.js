@@ -1,4 +1,5 @@
 import Main from './load';
+import Shopware from 'src/core/shopware';
 
 const VueShopwareAdminStandalone = {
   install(Vue, options) {
@@ -20,4 +21,5 @@ if (typeof window !== 'undefined' && window.Vue) {
   window.Vue.use(VueShopwareAdminStandalone);
 }
 
+export const Shopware = Shopware;
 export default VueShopwareAdminStandalone;
