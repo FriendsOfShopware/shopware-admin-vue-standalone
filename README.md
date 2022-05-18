@@ -1,5 +1,7 @@
 # Shopware Admin Vue Standalone
 
+## Will be replaced with
+
 Use https://github.com/shopware/admin-component-library instead
 
 Use Shopware admin components outside of Shopware itself. Handy for developing 
