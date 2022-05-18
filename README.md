@@ -1,4 +1,7 @@
 # Shopware Admin Vue Standalone
+
+Use https://github.com/shopware/admin-component-library instead
+
 Use Shopware admin components outside of Shopware itself. Handy for developing 
 Shopware cloud apps where the backend is integrated via iFrame.
 
